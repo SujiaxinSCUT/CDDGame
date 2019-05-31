@@ -1,0 +1,63 @@
+.club{
+	-fx-background-image:url(file:///D:/Myjava/game/images/card/club.jpg);
+	-fx-background-repeat:repeat ;
+	-fx-background-size:stretch ;
+}
+.diamond{
+	-fx-background-image:url(file:///D:/Myjava/game/images/card/diamond.jpg);
+	-fx-background-repeat:repeat ;
+	-fx-background-size:stretch ;
+}
+.heart{
+	-fx-background-image:url(file:///D:/Myjava/game/images/card/heart.jpg);
+	-fx-background-repeat:repeat ;
+	-fx-background-size:stretch ;
+}
+.spade{
+	-fx-background-image:url(file:///D:/Myjava/game/images/card/spade.jpg);
+	-fx-background-repeat:repeat ;
+	-fx-background-size:stretch ;
+}
+
+.background
+{
+	-fx-background-image:url(file:///D:/Myjava/game/images/background.jpg);
+	-fx-background-repeat:repeat ;
+	-fx-background-size:stretch ;
+}
+
+.startButton{
+	-fx-background-image:url(file:///D:/Myjava/game/images/startGame/startGame.png);
+	-fx-background-repeat:repeat ;
+	-fx-background-size:stretch ;	
+}
+
+.Card{
+	-fx-border-color: #e2e2e2;
+    -fx-border-width: 3;
+}
+
+.CardBack{
+	-fx-background-image:url(file:///D:/Myjava/game/images/Main/CardBack.png);
+	-fx-background-repeat:repeat ;
+	-fx-background-size:stretch ;	
+}
+
+.showCards{
+	-fx-background-image:url(file:///D:/Myjava/game/images/Main/showCards.png);
+	-fx-background-repeat:repeat ;
+	-fx-background-size:stretch ;	
+}
+
+.PassButton{
+	-fx-background-color:linear-gradient(#ffb419,#ea2705,#ffb419);
+	-fx-background-radius:20;
+	-fx-border-radius:20;
+	-fx-font-size:25;
+	-fx-text-fill:white;
+	
+	
+}
+
+
+
