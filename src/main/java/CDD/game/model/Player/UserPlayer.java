@@ -1,11 +1,9 @@
 package CDD.game.model.Player;
 
+import CDD.game.model.CardGroup.CardGroup;
+
 public class UserPlayer extends Player{
 
-	@Override
-	public void showCards() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

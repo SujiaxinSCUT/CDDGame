@@ -9,6 +9,7 @@ import CDD.game.Game;
 import CDD.game.model.Board.Board;
 import CDD.game.model.Card.Card;
 import CDD.game.model.Card.CardFactory;
+import CDD.game.model.Card.DiamondThreeFilter;
 import CDD.game.model.CardGroup.CardGroup;
 import CDD.game.model.CardGroup.CardGroupFactory;
 import CDD.game.model.Player.UserPlayer;
@@ -23,8 +24,7 @@ import javafx.scene.text.Text;
 public class BoardController implements Initializable{
 
 	@FXML
-	private HBox playerCards;
-	
+	private HBox playerCards;	
 	@FXML
 	private Text LeftCardCount;
 	@FXML
@@ -51,15 +51,16 @@ public class BoardController implements Initializable{
 		// TODO Auto-generated method stub
 		selectedCard=new ArrayList<>();
 		board=Game.getInstance().getBoard();
-	    board.setCurrentPlayer(Game.getInstance().getUserPlayer());
-	    board.changeTurn(new BottomRound());
+		board.setController(this);
 		showCardsEvent();
 		PassEvent();
+		
 		playerCards.setSpacing(-100);
 	    cardGroup.setSpacing(-100);
 	    updateView();
+	    board.showCards();
 	}
-	
+//	出牌按钮事件监听
 	public void showCardsEvent() {
 		showCards.setOnMouseEntered(e->{
 			showCards.setPrefHeight(65);
@@ -76,9 +77,18 @@ public class BoardController implements Initializable{
 				mes.setText("不符合规则");
 			else
 			{
-				
+				System.out.println(group.getCards().size());
+				if(DiamondThreeFilter.judge(board.getBottomPlayer().getHandCards()))
+				{
+					if(!DiamondThreeFilter.judge(group.getCards()))
+					{
+						mes.setText("不包含方块三");
+						return;
+					}
+				}
+				board.getBottomPlayer().showCards(group.getCards());
 				board.setCurrentGroups(group);
-				board.showCards(group.getCards());
+				board.showCards();
 				selectedCard.clear();
 				
 				updateView();
@@ -86,7 +96,7 @@ public class BoardController implements Initializable{
 		});
 		
 	}
-	
+//	不出按钮事件监听
 	public void PassEvent() {
 		Pass.setOnMouseEntered(e->{
 			Pass.setPrefHeight(55);
@@ -98,17 +108,21 @@ public class BoardController implements Initializable{
 			Pass.setPrefWidth(115);
 		});
 		Pass.setOnMouseClicked(e->{
-			board.showCards(null);
+			board.showCards();
 			updateView();
 		});
 	}
-	
+//	更新视图
 	public void updateView() {
 		mes.setText("");
 		if(board.getCurrentPlayer()==board.getBottomPlayer())
 		{
 			showCards.setVisible(true);
-			
+			if(board.getCurrentGroups()==null||board.getCurrentGroups().getOwner()==board.getBottomPlayer())
+			{
+				Pass.setVisible(false);
+			}
+			else
 			Pass.setVisible(true);
 		}
 		else {

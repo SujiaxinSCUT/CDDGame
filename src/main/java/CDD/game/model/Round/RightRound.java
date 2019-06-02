@@ -4,25 +4,23 @@ import java.util.List;
 
 import CDD.game.model.Board.Board;
 import CDD.game.model.Card.Card;
+import CDD.game.model.CardGroup.CardGroup;
 
 public class RightRound extends Round
 {
 
 	@Override
-	public void showCards(List<Card> cards, Board board) {
+	public void showCards(Board board) {
 		// TODO Auto-generated method stub
-		if (cards!=null) {
-		List<Card> oldCards=board.getRightPlayer().getHandCards();
-		oldCards.removeAll(cards);
-		board.getRightPlayer().setHandCards(oldCards);
-		if(oldCards.size()==0)
+		CardGroup group=board.getRightPlayer().showCards();
+		if(group!=null)
 		{
-			board.setFlag(true);
-			return;
-		}
+			board.setCurrentGroups(group);
 		}
 		board.changeTurn(new BottomRound());
 		board.setCurrentPlayer(board.getBottomPlayer());
+		
+		board.updateView();
 	}
 	
 }

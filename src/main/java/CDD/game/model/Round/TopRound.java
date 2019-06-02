@@ -4,24 +4,22 @@ import java.util.List;
 
 import CDD.game.model.Board.Board;
 import CDD.game.model.Card.Card;
+import CDD.game.model.CardGroup.CardGroup;
 
 public class TopRound extends Round
 {
 
 	@Override
-	public void showCards(List<Card> cards, Board board) {
+	public void showCards(Board board) {
 		// TODO Auto-generated method stub
-		if (cards!=null) {
-		List<Card> oldCards=board.getTopPlayer().getHandCards();
-		oldCards.removeAll(cards);
-		board.getTopPlayer().setHandCards(oldCards);
-		if(oldCards.size()==0)
+		CardGroup group=board.getTopPlayer().showCards();
+		if(group!=null)
 		{
-			board.setFlag(true);
-			return;
-		}
+			board.setCurrentGroups(group);
 		}
 	    board.changeTurn(new RightRound());
 	    board.setCurrentPlayer(board.getRightPlayer());
+	    board.showCards();
+	    board.updateView();
     }
 }

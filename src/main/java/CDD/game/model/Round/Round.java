@@ -7,7 +7,7 @@ import CDD.game.model.Card.Card;
 
 public abstract class Round {
 
-	public abstract void showCards(List<Card> cards,Board board);
+	public abstract void showCards(Board board);
 }
 
 

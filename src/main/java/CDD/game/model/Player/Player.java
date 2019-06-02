@@ -3,6 +3,7 @@ package CDD.game.model.Player;
 import java.util.List;
 
 import CDD.game.model.Card.Card;
+import CDD.game.model.CardGroup.CardGroup;
 
 public abstract class Player {
 
@@ -16,7 +17,10 @@ public abstract class Player {
 		this.handCards = handCards;
 	}
 	
-	public abstract void showCards();
+	public void showCards(List<Card> cards)
+	{
+		handCards.removeAll(cards);
+	}
 
 
 
