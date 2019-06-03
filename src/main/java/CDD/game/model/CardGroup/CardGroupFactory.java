@@ -155,10 +155,7 @@ public class CardGroupFactory {
 	{
 		CardFactory.sortByPoint(cards);
 		List<Card> temp=new ArrayList<>();
-		for(Card card:cards)
-		{
-			temp.add(card);
-		}
+		temp.addAll(cards);
 		List<Card> TopFour=new ArrayList<>();
 		for(int i=0;i<4;i++)
 		{

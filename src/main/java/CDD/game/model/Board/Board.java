@@ -7,25 +7,19 @@ import java.util.List;
 import CDD.game.controller.BoardController;
 import CDD.game.model.Card.Card;
 import CDD.game.model.Card.CardFactory;
-import CDD.game.model.Card.DiamondThreeFilter;
+import CDD.game.model.Card.Filter;
 import CDD.game.model.CardGroup.CardGroup;
 import CDD.game.model.Player.*;
-import CDD.game.model.Round.BottomRound;
-import CDD.game.model.Round.LeftRound;
-import CDD.game.model.Round.RightRound;
-import CDD.game.model.Round.Round;
-import CDD.game.model.Round.TopRound;
 
 public class Board {
 
 	private Robot leftPlayer;
 	private Robot rightPlayer;
 	private Robot topPlayer;
-	private Player bottomPlayer;
+	private UserPlayer bottomPlayer;
+
 	
-	private Round currentRound;
-	
-	private Player currentPlayer;
+	private  Player currentPlayer;
 	
 	private CardGroup currentGroups;
 	
@@ -33,73 +27,67 @@ public class Board {
 	
 	private BoardController controller;
 	
-	public void changeTurn(Round round)
-	{
-		currentRound = round;
-	}
-	
-	public void showCards()
-	{
-		currentRound.showCards(this);
-	}
 	
 	public Board(UserPlayer player)
 	{
 		
 		CardFactory.shuffle();
 		this.bottomPlayer=player;
-		this.leftPlayer=new Robot();
-		this.topPlayer=new Robot();
-		this.rightPlayer=new Robot();
+		this.leftPlayer=new LeftRobot();
+		this.topPlayer=new TopRobot();
+		this.rightPlayer=new RightRobot();
 		bottomPlayer.setHandCards(CardFactory.getCards());
 		leftPlayer.setHandCards(CardFactory.getCards());
 		topPlayer.setHandCards(CardFactory.getCards());
 		rightPlayer.setHandCards(CardFactory.getCards());
-		if(DiamondThreeFilter.judge(bottomPlayer.getHandCards()))
+		if(Filter.DiamondThreejudge(bottomPlayer.getHandCards()))
 		{
 			currentPlayer=bottomPlayer;
-			currentRound=new BottomRound();
-			this.showCards();
 			return;
 		}
-		if(DiamondThreeFilter.judge(leftPlayer.getHandCards()))
+		if(Filter.DiamondThreejudge(leftPlayer.getHandCards()))
 		{
-			currentPlayer=leftPlayer;
-			currentRound=new LeftRound();			
+			currentPlayer=leftPlayer;	
 			return;
 		}
-		if(DiamondThreeFilter.judge(topPlayer.getHandCards()))
+		if(Filter.DiamondThreejudge(topPlayer.getHandCards()))
 		{
 			currentPlayer=topPlayer;
-			currentRound=new TopRound();			
 			return;
 		}
-		if(DiamondThreeFilter.judge(rightPlayer.getHandCards()))
+		if(Filter.DiamondThreejudge(rightPlayer.getHandCards()))
 		{
 			currentPlayer=rightPlayer;
-			currentRound=new RightRound();
 			return;
 		}
 		
 		
 	}
+	
+	
+	
+	public void RobotRun()
+	{
+		Thread thread1=new Thread(leftPlayer);
+		Thread thread2=new Thread(rightPlayer);
+		Thread thread3=new Thread(topPlayer);
+		thread1.start();
+		thread2.start();
+		thread3.start();
+	}
+
 
 	public void setController(BoardController controller)
 	{
 		this.controller=controller;
 	}
     
-    public void updateView() {
+    public synchronized void updateView() {
     	this.controller.updateView();
     }
-    
-	
 
-	public Round getCurrentRound() {
-		return currentRound;
-	}
 
-	public Player getCurrentPlayer() {
+	public synchronized Player getCurrentPlayer() {
 		return currentPlayer;
 	}
 
@@ -115,8 +103,6 @@ public class Board {
 		this.currentGroups = currentGroups;
 		
 	}
-
-	
 
 	public Robot getLeftPlayer() {
 		return leftPlayer;
@@ -146,7 +132,7 @@ public class Board {
 		return bottomPlayer;
 	}
 
-	public void setBottomPlayer(Player bottomPlayer) {
+	public void setBottomPlayer(UserPlayer bottomPlayer) {
 		this.bottomPlayer = bottomPlayer;
 	}
 

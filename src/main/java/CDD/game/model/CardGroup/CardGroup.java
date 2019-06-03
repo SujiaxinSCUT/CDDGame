@@ -134,7 +134,7 @@ public class CardGroup {
 		return false;
 	}
 	
-	public boolean compareThreeBeltTwo(List<Card> c1,List<Card> c2)
+	private boolean compareThreeBeltTwo(List<Card> c1,List<Card> c2)
 	{
 		int point1=c1.get(0).getPoint();
 		int count=1;

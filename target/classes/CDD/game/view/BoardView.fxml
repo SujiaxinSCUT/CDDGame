@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
@@ -50,19 +51,37 @@
       </BorderPane>
    </bottom>
    <top>
-      <HBox alignment="CENTER" spacing="30.0">
+      <VBox alignment="CENTER" spacing="20.0">
          <children>
-            <Label prefHeight="130.0" prefWidth="100.0" styleClass="CardBack" BorderPane.alignment="CENTER" />
-            <Text fx:id="TopCardCount" fill="#bfbc19" strokeType="OUTSIDE" strokeWidth="0.0">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Text>
+            <HBox alignment="CENTER" spacing="30.0">
+               <children>
+                  <Label prefHeight="130.0" prefWidth="100.0" styleClass="CardBack" BorderPane.alignment="CENTER" />
+                  <Text fx:id="TopCardCount" fill="#bfbc19" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+               <BorderPane.margin>
+                  <Insets top="30.0" />
+               </BorderPane.margin>
+            </HBox>
+            <Circle fx:id="topAlarm" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+               <fill>
+                  <RadialGradient centerX="0.48863636363636365" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#ff1f1f" />
+                        <Stop color="#ff1f1f" offset="0.53125" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </fill>
+            </Circle>
          </children>
-         <BorderPane.margin>
+         <padding>
             <Insets top="30.0" />
-         </BorderPane.margin>
-      </HBox>
+         </padding>
+      </VBox>
    </top>
    <left>
       <HBox alignment="CENTER" spacing="30.0" BorderPane.alignment="CENTER">
@@ -73,6 +92,17 @@
                   <Font size="24.0" />
                </font>
             </Text>
+            <Circle fx:id="leftAlarm" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+               <fill>
+                  <RadialGradient centerX="0.48863636363636365" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#ff1f1f" />
+                        <Stop color="#ff1f1f" offset="0.53125" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </fill>
+            </Circle>
          </children>
          <BorderPane.margin>
             <Insets left="30.0" />
@@ -82,6 +112,17 @@
    <right>
       <HBox alignment="CENTER" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
+            <Circle fx:id="rightAlarm" radius="25.0" stroke="BLACK" strokeType="INSIDE">
+               <fill>
+                  <RadialGradient centerX="0.48863636363636365" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#ff1f1f" />
+                        <Stop color="#ff1f1f" offset="0.53125" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </fill>
+            </Circle>
             <Text fx:id="RightCardCount" fill="#bfbc19" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="System Bold" size="24.0" />

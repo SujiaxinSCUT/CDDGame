@@ -9,16 +9,16 @@ import CDD.game.Game;
 import CDD.game.model.Board.Board;
 import CDD.game.model.Card.Card;
 import CDD.game.model.Card.CardFactory;
-import CDD.game.model.Card.DiamondThreeFilter;
+import CDD.game.model.Card.Filter;
 import CDD.game.model.CardGroup.CardGroup;
 import CDD.game.model.CardGroup.CardGroupFactory;
 import CDD.game.model.Player.UserPlayer;
-import CDD.game.model.Round.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
 public class BoardController implements Initializable{
@@ -39,6 +39,13 @@ public class BoardController implements Initializable{
 	private Button Pass;
 	@FXML
 	private HBox cardGroup;
+	@FXML
+	private Circle leftAlarm;
+	@FXML
+	private Circle topAlarm;
+	@FXML
+	private Circle rightAlarm;
+	
 	
 	private Board board;
 	
@@ -58,8 +65,34 @@ public class BoardController implements Initializable{
 		playerCards.setSpacing(-100);
 	    cardGroup.setSpacing(-100);
 	    updateView();
-	    board.showCards();
+        board.RobotRun();
 	}
+	
+	public void closeAlarm() {
+		this.leftAlarm.setVisible(false);
+		this.topAlarm.setVisible(false);
+		this.rightAlarm.setVisible(false);
+	}
+	
+	public void showAlarm()
+	{
+		if(board.getCurrentPlayer()==board.getLeftPlayer())
+		{
+			this.leftAlarm.setVisible(true);
+		}
+		if(board.getCurrentPlayer()==board.getTopPlayer())
+		{
+			this.topAlarm.setVisible(true);
+		}
+		if(board.getCurrentPlayer()==board.getRightPlayer())
+		{
+			this.rightAlarm.setVisible(true);
+		}
+	}
+	
+	
+	
+	
 //	出牌按钮事件监听
 	public void showCardsEvent() {
 		showCards.setOnMouseEntered(e->{
@@ -78,19 +111,25 @@ public class BoardController implements Initializable{
 			else
 			{
 				System.out.println(group.getCards().size());
-				if(DiamondThreeFilter.judge(board.getBottomPlayer().getHandCards()))
+				if(Filter.DiamondThreejudge(board.getBottomPlayer().getHandCards()))
 				{
-					if(!DiamondThreeFilter.judge(group.getCards()))
+					if(!Filter.DiamondThreejudge(group.getCards()))
 					{
 						mes.setText("不包含方块三");
 						return;
 					}
 				}
-				board.getBottomPlayer().showCards(group.getCards());
-				board.setCurrentGroups(group);
-				board.showCards();
-				selectedCard.clear();
-				
+				if(board.getCurrentGroups()!=null&&board.getCurrentGroups().getOwner()!=board.getBottomPlayer())
+				{
+				  if(!group.CompareTo(board.getCurrentGroups()))
+				 {
+					mes.setText("不符合规则");
+					return;
+				 }
+				}
+				UserPlayer player=(UserPlayer) board.getBottomPlayer();
+				player.showCards(board, group);
+				selectedCard.clear();				
 				updateView();
 			}
 		});
@@ -108,7 +147,9 @@ public class BoardController implements Initializable{
 			Pass.setPrefWidth(115);
 		});
 		Pass.setOnMouseClicked(e->{
-			board.showCards();
+			UserPlayer player=(UserPlayer) board.getBottomPlayer();
+			player.showCards(board, null);
+			selectedCard.clear();
 			updateView();
 		});
 	}
@@ -161,7 +202,8 @@ public class BoardController implements Initializable{
 				cardGroup.getChildren().add(card.getView());
 			}
 		}
-		
+		closeAlarm();
+		showAlarm();
 	}
 
 }
