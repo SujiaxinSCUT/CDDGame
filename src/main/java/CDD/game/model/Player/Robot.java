@@ -37,6 +37,7 @@ public class Robot extends Player implements Runnable{
 			CardGroup group=CardGroupFactory.create(cards,this);
 			board.setCurrentGroups(group);
 			this.changeTurn(board);
+			Game.getInstance().showcardMusic();
 			return;
 		}
 		
@@ -48,6 +49,7 @@ public class Robot extends Player implements Runnable{
 		    
 			CardGroup group=CardGroupFactory.create(cards,this);
 			board.setCurrentGroups(group);
+			Game.getInstance().showcardMusic();
 			if(getHandCards().size()==0)
 			{
 				board.setFlag(false);
@@ -68,6 +70,7 @@ public class Robot extends Player implements Runnable{
 			    this.getHandCards().removeAll(cards);
 				CardGroup group=CardGroupFactory.create(cards,this);
 				board.setCurrentGroups(group);
+				Game.getInstance().showcardMusic();
 				if(getHandCards().size()==0)
 				{
 					board.setFlag(false);
@@ -85,6 +88,7 @@ public class Robot extends Player implements Runnable{
 				this.getHandCards().removeAll(cards);
 				CardGroup group=CardGroupFactory.create(cards,this);
 				board.setCurrentGroups(group);
+				Game.getInstance().showcardMusic();
 				if(getHandCards().size()==0)
 				{
 					board.setFlag(false);
@@ -102,6 +106,7 @@ public class Robot extends Player implements Runnable{
 				this.getHandCards().removeAll(cards);
 				CardGroup group=CardGroupFactory.create(cards,this);
 				board.setCurrentGroups(group);
+				Game.getInstance().showcardMusic();
 				if(getHandCards().size()==0)
 				{
 					board.setFlag(false);

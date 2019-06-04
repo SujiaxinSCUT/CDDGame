@@ -107,6 +107,16 @@
                   <Insets left="130.0" top="430.0" />
                </StackPane.margin>
             </VBox>
+            <Slider fx:id="SVolumn1" StackPane.alignment="TOP_CENTER">
+               <StackPane.margin>
+                  <Insets left="310.0" right="200.0" top="270.0" />
+               </StackPane.margin>
+            </Slider>
+            <Slider fx:id="SVolumn2" StackPane.alignment="TOP_CENTER">
+               <StackPane.margin>
+                  <Insets left="310.0" right="200.0" top="355.0" />
+               </StackPane.margin>
+            </Slider>
          </children>
       </StackPane>
    </children>

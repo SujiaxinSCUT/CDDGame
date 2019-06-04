@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -34,10 +35,14 @@ public class StartGameController implements Initializable{
 	@FXML
 	private TextField nameTextField;
 
+	@FXML
+	private Slider SVolumn1;
+	@FXML
+	private Slider SVolumn2;
 	
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
+		Bind();
 		settingPage.setVisible(false);
 		StartButtonEvent();
 		SettingEvent();
@@ -128,5 +133,12 @@ public class StartGameController implements Initializable{
 		}
 	}
 	
-	
+	public void Bind() {
+		Game.getInstance().getPlayer().getPlayer().
+		volumeProperty().bind(SVolumn1.valueProperty().divide(100));
+		Game.getInstance().getShowcard().getPlayer().
+		volumeProperty().bind(SVolumn2.valueProperty().divide(100));
+		SVolumn1.setValue(50);
+		SVolumn2.setValue(50);
+	}
 }

@@ -20,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -67,7 +68,7 @@ public class BoardController implements Initializable{
 		board.setController(this);
 		showCardsEvent();
 		PassEvent();
-		
+
 		playerCards.setSpacing(-100);
 	    cardGroup.setSpacing(-100);
 	    updateView();
@@ -135,6 +136,7 @@ public class BoardController implements Initializable{
 				}
 				UserPlayer player=(UserPlayer) board.getBottomPlayer();
 				player.showCards(board, group);
+				Game.getInstance().showcardMusic();
 				selectedCard.clear();				
 				updateView();
 			}
@@ -230,5 +232,6 @@ public class BoardController implements Initializable{
 		    }
 		});
 	}
+	
 
 }
