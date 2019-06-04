@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
@@ -9,17 +11,103 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1400.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CDD.game.controller.StartGameController">
    <children>
-      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+      <VBox alignment="CENTER" prefWidth="270.0" spacing="20.0">
          <children>
-            <Label fx:id="StartButton" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="startButton">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <HBox.margin>
-                  <Insets right="50.0" />
-               </HBox.margin>
-            </Label>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="StartButton" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="startButton">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="settings" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" styleClass="setting" text="游戏设置">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold Italic" size="36.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
          </children>
-      </HBox>
+      </VBox>
+      <StackPane fx:id="settingPage" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" styleClass="settingbg" stylesheets="@style2.css">
+         <children>
+            <HBox alignment="TOP_CENTER" fillHeight="false" spacing="30.0" StackPane.alignment="CENTER">
+               <children>
+                  <ChoiceBox fx:id="name" prefWidth="200.0" styleClass="choicebox" StackPane.alignment="TOP_CENTER">
+                     <StackPane.margin>
+                        <Insets left="40.0" top="180.0" />
+                     </StackPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ChoiceBox>
+               </children>
+               <StackPane.margin>
+                  <Insets left="120.0" top="180.0" />
+               </StackPane.margin>
+            </HBox>
+            <VBox>
+               <children>
+                  <HBox prefHeight="53.0" prefWidth="570.0" StackPane.alignment="CENTER">
+                     <children>
+                        <Label text="注册用户:">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                           <textFill>
+                              <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                                 <stops>
+                                    <Stop color="#0014ff" />
+                                    <Stop color="WHITE" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </textFill>
+                        </Label>
+                        <TextField fx:id="nameTextField" prefHeight="30.0" promptText="请输入用户名">
+                           <HBox.margin>
+                              <Insets left="60.0" top="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button fx:id="register" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="60.0" styleClass="RegisterButton" text="注册">
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                     <StackPane.margin>
+                        <Insets left="130.0" top="430.0" />
+                     </StackPane.margin>
+                  </HBox>
+                  <Label onMouseClicked="#confirm" prefHeight="50.0" prefWidth="80.0" styleClass="confirm">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets left="180.0" top="40.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <StackPane.margin>
+                  <Insets left="130.0" top="430.0" />
+               </StackPane.margin>
+            </VBox>
+         </children>
+      </StackPane>
    </children>
 </StackPane>

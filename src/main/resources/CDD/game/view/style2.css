@@ -1,0 +1,45 @@
+
+
+.settingbg{
+	-fx-background-image:url(file:images/settings/bg.png);
+	-fx-background-repeat:repeat ;
+	-fx-background-size:stretch ;
+}
+
+.choicebox{
+	-fx-background-color:#4F9D9D;
+}
+
+.choicebox:hover{
+	-fx-background-color:#66B3FF;
+}
+
+.RegisterButton{
+	-fx-background-color:linear-gradient(#66B3FF,#2828FF,#66B3FF);
+	-fx-background-radius:15;
+	-fx-border-radius:15;
+	-fx-font-size:18;
+	-fx-text-fill:white;
+		
+}
+
+.RegisterButton:hover{
+	-fx-background-color:linear-gradient(#2828FF,#66B3FF,#2828FF);
+}
+
+
+
+.confirm{
+	-fx-background-image:url(file:images/settings/confirm.png);
+	-fx-background-repeat:repeat ;
+	-fx-background-size:stretch ;
+}
+
+.confirm:hover
+{
+	-fx-background-image:url(file:images/settings/confirmHover.png);
+	-fx-background-repeat:repeat ;
+	-fx-background-size:stretch ;
+}
+
+

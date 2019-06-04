@@ -27,6 +27,9 @@ public class Board {
 	
 	private BoardController controller;
 	
+	private boolean stop;
+	
+	
 	
 	public Board(UserPlayer player)
 	{
@@ -75,6 +78,20 @@ public class Board {
 		thread2.start();
 		thread3.start();
 	}
+
+
+	
+	
+	public boolean isStop() {
+		return stop;
+	}
+
+
+
+	public void setStop(boolean stop) {
+		this.stop = stop;
+	}
+
 
 
 	public void setController(BoardController controller)
@@ -142,6 +159,15 @@ public class Board {
 
 	public void setFlag(boolean flag) {
 		this.flag = flag;
+		topPlayer.running=false;
+		leftPlayer.running=false;
+		rightPlayer.running=false;
+		try {
+			controller.gameOver();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

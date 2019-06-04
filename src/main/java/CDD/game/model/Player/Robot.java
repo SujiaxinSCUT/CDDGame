@@ -16,6 +16,7 @@ public class Robot extends Player implements Runnable{
 
 	private Board board;
 	
+	public boolean running=true;
 	
 	public void showCards(){
 		// TODO Auto-generated method stub
@@ -42,15 +43,16 @@ public class Robot extends Player implements Runnable{
 		if(board.getCurrentGroups().getOwner()==this)
 		{
 		    List<Card> cards=new ArrayList<>();
-		    cards.add(this.getHandCards().get(0));
+		    cards.add(this.getHandCards().get(getHandCards().size()-1));
 		    this.getHandCards().removeAll(cards);
-		    if(this.getHandCards().size()==0)
-		    {
-		    	board.setFlag(true);
-		    	return;
-		    }
+		    
 			CardGroup group=CardGroupFactory.create(cards,this);
 			board.setCurrentGroups(group);
+			if(getHandCards().size()==0)
+			{
+				board.setFlag(false);
+				return;
+			}
 			this.changeTurn(board);			
 			return;
 		}
@@ -66,6 +68,11 @@ public class Robot extends Player implements Runnable{
 			    this.getHandCards().removeAll(cards);
 				CardGroup group=CardGroupFactory.create(cards,this);
 				board.setCurrentGroups(group);
+				if(getHandCards().size()==0)
+				{
+					board.setFlag(false);
+					return;
+				}
 				this.changeTurn(board);
 				
 				return;
@@ -78,6 +85,11 @@ public class Robot extends Player implements Runnable{
 				this.getHandCards().removeAll(cards);
 				CardGroup group=CardGroupFactory.create(cards,this);
 				board.setCurrentGroups(group);
+				if(getHandCards().size()==0)
+				{
+					board.setFlag(false);
+					return;
+				}
 				this.changeTurn(board);
 				
 				return;
@@ -90,6 +102,11 @@ public class Robot extends Player implements Runnable{
 				this.getHandCards().removeAll(cards);
 				CardGroup group=CardGroupFactory.create(cards,this);
 				board.setCurrentGroups(group);
+				if(getHandCards().size()==0)
+				{
+					board.setFlag(false);
+					return;
+				}
 				this.changeTurn(board);
 				
 				return;
@@ -154,17 +171,27 @@ public class Robot extends Player implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
 		board=Game.getInstance().getBoard();
-		while(true)
+		while(running)
 		{
 			if(board.getCurrentPlayer()==this)
 			{
-				 Platform.runLater(new Runnable() {
-					    @Override
-					    public void run() {
-					        //更新JavaFX的主线程的代码放在此处
-							board.updateView();
-					    }
-					});
+			
+			Platform.runLater(new Runnable() {
+			    @Override
+			    public void run() {
+			    //更新JavaFX的主线程的代码放在此处
+				board.updateView();
+			    }
+			});
+			while(board.isStop())
+			{
+				try {
+					wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -173,6 +200,7 @@ public class Robot extends Player implements Runnable{
 			}
 			this.showCards();
 
+			
 			
 			}
 		}

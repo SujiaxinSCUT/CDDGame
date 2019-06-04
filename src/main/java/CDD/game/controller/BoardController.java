@@ -1,5 +1,6 @@
 package CDD.game.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,8 @@ import CDD.game.model.Card.Filter;
 import CDD.game.model.CardGroup.CardGroup;
 import CDD.game.model.CardGroup.CardGroupFactory;
 import CDD.game.model.Player.UserPlayer;
+import CDD.game.view.App;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -45,7 +48,8 @@ public class BoardController implements Initializable{
 	private Circle topAlarm;
 	@FXML
 	private Circle rightAlarm;
-	
+	@FXML
+	private Text name;
 	
 	private Board board;
 	
@@ -56,8 +60,10 @@ public class BoardController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		
 		selectedCard=new ArrayList<>();
 		board=Game.getInstance().getBoard();
+		name.setText(((UserPlayer) Game.getInstance().getUserPlayer()).getUser().getName());
 		board.setController(this);
 		showCardsEvent();
 		PassEvent();
@@ -204,6 +210,25 @@ public class BoardController implements Initializable{
 		}
 		closeAlarm();
 		showAlarm();
+	}
+	
+	public void gameOver() throws Exception
+	{
+		Platform.runLater(new Runnable() {
+		    @Override
+		    public void run() {
+		    //更新JavaFX的主线程的代码放在此处
+		    	showCards.setVisible(false);
+		    	Pass.setVisible(false);
+		    	cardGroup.getChildren().clear();
+				try {
+					cardGroup.getChildren().add(App.loadFXML("GameOver"));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    }
+		});
 	}
 
 }
