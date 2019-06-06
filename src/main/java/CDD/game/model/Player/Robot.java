@@ -10,6 +10,7 @@ import CDD.game.model.Card.Filter;
 import CDD.game.model.CardGroup.CardGroup;
 import CDD.game.model.CardGroup.CardGroupFactory;
 import CDD.game.model.CardGroup.CardType;
+import CDD.game.view.App;
 import javafx.application.Platform;
 
 public class Robot extends Player implements Runnable{
@@ -36,6 +37,7 @@ public class Robot extends Player implements Runnable{
 			this.getHandCards().remove(DiamondThree);
 			CardGroup group=CardGroupFactory.create(cards,this);
 			board.setCurrentGroups(group);
+			this.updateView(group);
 			this.changeTurn(board);
 			Game.getInstance().showcardMusic();
 			return;
@@ -50,6 +52,7 @@ public class Robot extends Player implements Runnable{
 			CardGroup group=CardGroupFactory.create(cards,this);
 			board.setCurrentGroups(group);
 			Game.getInstance().showcardMusic();
+			this.updateView(group);
 			if(getHandCards().size()==0)
 			{
 				board.setFlag(false);
@@ -71,6 +74,7 @@ public class Robot extends Player implements Runnable{
 				CardGroup group=CardGroupFactory.create(cards,this);
 				board.setCurrentGroups(group);
 				Game.getInstance().showcardMusic();
+				this.updateView(group);
 				if(getHandCards().size()==0)
 				{
 					board.setFlag(false);
@@ -89,13 +93,13 @@ public class Robot extends Player implements Runnable{
 				CardGroup group=CardGroupFactory.create(cards,this);
 				board.setCurrentGroups(group);
 				Game.getInstance().showcardMusic();
+				this.updateView(group);
 				if(getHandCards().size()==0)
 				{
 					board.setFlag(false);
 					return;
 				}
 				this.changeTurn(board);
-				
 				return;
 			}
 		}break;
@@ -107,6 +111,7 @@ public class Robot extends Player implements Runnable{
 				CardGroup group=CardGroupFactory.create(cards,this);
 				board.setCurrentGroups(group);
 				Game.getInstance().showcardMusic();
+				this.updateView(group);
 				if(getHandCards().size()==0)
 				{
 					board.setFlag(false);
@@ -118,6 +123,8 @@ public class Robot extends Player implements Runnable{
 			}
 		}break;
 		}
+		
+		this.updateView(null);
 		this.changeTurn(board);
 		
 	}
@@ -166,6 +173,10 @@ public class Robot extends Player implements Runnable{
 		return null;
 	}
 	
+	public void updateView(CardGroup group)
+	{
+		
+	}
 	
 	public void changeTurn(Board board)
 	{

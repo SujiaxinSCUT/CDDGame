@@ -13,12 +13,15 @@ public class CardGroupView extends HBox {
 
 	
 	
-	public CardGroupView()
+	public CardGroupView(CardGroup group)
 	{
 		
 		this.setAlignment(Pos.CENTER);
-		this.setSpacing(-140);
-		
+		this.setSpacing(-100);
+		for(Card card:group.getCards())
+		{
+			this.getChildren().add(card.getView());
+		}
 	}
 
 	public void removeAll() {
@@ -29,6 +32,7 @@ public class CardGroupView extends HBox {
 	public void addChildren(CardView view) {
 		// TODO Auto-generated method stub
 		this.addChildren(view);
+		System.out.println("add");
 	}
 	
 	

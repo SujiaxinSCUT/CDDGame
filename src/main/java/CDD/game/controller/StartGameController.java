@@ -11,6 +11,8 @@ import CDD.game.Tools.FileUtils;
 import CDD.game.model.Player.User;
 import CDD.game.model.Player.UserPlayer;
 import CDD.game.view.App;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,7 +20,10 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
@@ -27,25 +32,64 @@ public class StartGameController implements Initializable{
 	@FXML
 	private Label StartButton;
 	@FXML
+	private Label close;
+	@FXML
 	private Button settings;
 	@FXML
+	private Button rank;
+	@FXML
 	private StackPane settingPage;
+	@FXML
+    private StackPane rankPage;
 	@FXML
 	private ChoiceBox<User> name;
 	@FXML
 	private TextField nameTextField;
-
+	
 	@FXML
 	private Slider SVolumn1;
 	@FXML
 	private Slider SVolumn2;
 	
+	@FXML
+	private TableView<User> ranktable;
+	@FXML
+	private TableColumn<User, String> nameColumn;
+	@FXML
+	private TableColumn<User, Integer> scoreColumn;
+	
+	private ObservableList<User> UserData = FXCollections.observableArrayList();
+	
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		Bind();
-		settingPage.setVisible(false);
 		StartButtonEvent();
 		SettingEvent();
+		RankEvent();
+		closeEvent();
+		initTable();
+	}
+	
+	public void RankEvent()
+	{
+		rank.setOnMouseEntered(e->{
+			rank.setPrefHeight(105);
+			rank.setPrefWidth(205);
+		});
+		rank.setOnMouseExited(e->{
+			rank.setPrefHeight(100);
+			rank.setPrefWidth(200);
+		});
+		rank.setOnMouseClicked(e->{
+			settingPage.setVisible(false);
+			settingPage.setDisable(true);
+			rankPage.setVisible(true);
+			rankPage.setDisable(false);
+			rankPage.toFront();
+			List<User>  lists=FileUtils.readUser();
+			UserData.clear();
+			UserData.addAll(lists);
+		});
 	}
 	
 	public void StartButtonEvent()
@@ -78,6 +122,21 @@ public class StartGameController implements Initializable{
 		});
 	}
 	
+	public void closeEvent()
+	{
+		close.setOnMouseEntered(e->{
+			close.setPrefHeight(35);
+			close.setPrefWidth(35);
+		});
+		close.setOnMouseExited(e->{
+			close.setPrefHeight(30);
+			close.setPrefWidth(30);
+		});
+		close.setOnMouseClicked(e->{
+			rankPage.setVisible(false);
+		});
+	}
+	
 	public void SettingEvent()
 	{
 		settings.setOnMouseEntered(e->{
@@ -89,7 +148,11 @@ public class StartGameController implements Initializable{
 			settings.setPrefWidth(200);
 		});
 		settings.setOnMouseClicked(e->{
+			rankPage.setVisible(false);
+			rankPage.setDisable(true);
 			settingPage.setVisible(true);
+			settingPage.setDisable(false);
+			
 			List<User>  lists=FileUtils.readUser();
 			System.out.println(lists.size());
 			if(lists.size()!=0)
@@ -140,5 +203,13 @@ public class StartGameController implements Initializable{
 		volumeProperty().bind(SVolumn2.valueProperty().divide(100));
 		SVolumn1.setValue(50);
 		SVolumn2.setValue(50);
+	}
+	
+	public void initTable()
+	{
+		this.nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+		this.scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
+		
+		this.ranktable.setItems(UserData);
 	}
 }

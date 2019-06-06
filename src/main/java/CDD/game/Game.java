@@ -43,7 +43,7 @@ public class Game {
 	}
 	
 
-	public Player getUserPlayer() {
+	public UserPlayer getUserPlayer() {
 		return userPlayer;
 	}
 

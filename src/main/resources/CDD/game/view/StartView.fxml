@@ -11,6 +11,37 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1400.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CDD.game.controller.StartGameController">
    <children>
+      <StackPane fx:id="rankPage" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" styleClass="rankBg" stylesheets="@style2.css" visible="false">
+         <children>
+            <TableView fx:id="ranktable" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="320.0" prefWidth="480.0">
+              <columns>
+                <TableColumn fx:id="nameColumn" prefWidth="241.0" text="name" />
+                <TableColumn fx:id="scoreColumn" prefWidth="258.0" text="score" />
+              </columns>
+               <StackPane.margin>
+                  <Insets left="25.0" top="30.0" />
+               </StackPane.margin>
+            </TableView>
+            <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" StackPane.alignment="TOP_RIGHT">
+               <children>
+                  <Label fx:id="close" prefHeight="30.0" prefWidth="30.0" styleClass="closeButton" StackPane.alignment="TOP_RIGHT">
+                     <StackPane.margin>
+                        <Insets right="20.0" top="20.0" />
+                     </StackPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+               <StackPane.margin>
+                  <Insets right="10.0" top="10.0" />
+               </StackPane.margin>
+            </HBox>
+         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </StackPane>
       <VBox alignment="CENTER" prefWidth="270.0" spacing="20.0">
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
@@ -40,9 +71,24 @@
                   </Button>
                </children>
             </HBox>
+            <HBox alignment="CENTER_RIGHT">
+               <children>
+                  <Button fx:id="rank" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" styleClass="setting" text="排行">
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </VBox>
-      <StackPane fx:id="settingPage" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" styleClass="settingbg" stylesheets="@style2.css">
+      <StackPane fx:id="settingPage" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" styleClass="settingbg" stylesheets="@style2.css" visible="false">
          <children>
             <HBox alignment="TOP_CENTER" fillHeight="false" spacing="30.0" StackPane.alignment="CENTER">
                <children>
@@ -59,7 +105,7 @@
                   <Insets left="120.0" top="180.0" />
                </StackPane.margin>
             </HBox>
-            <VBox>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity">
                <children>
                   <HBox prefHeight="53.0" prefWidth="570.0" StackPane.alignment="CENTER">
                      <children>
@@ -107,12 +153,12 @@
                   <Insets left="130.0" top="430.0" />
                </StackPane.margin>
             </VBox>
-            <Slider fx:id="SVolumn1" StackPane.alignment="TOP_CENTER">
+            <Slider fx:id="SVolumn1" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="200.0" StackPane.alignment="TOP_CENTER">
                <StackPane.margin>
                   <Insets left="310.0" right="200.0" top="270.0" />
                </StackPane.margin>
             </Slider>
-            <Slider fx:id="SVolumn2" StackPane.alignment="TOP_CENTER">
+            <Slider fx:id="SVolumn2" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="200.0" StackPane.alignment="TOP_CENTER">
                <StackPane.margin>
                   <Insets left="310.0" right="200.0" top="355.0" />
                </StackPane.margin>

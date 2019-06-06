@@ -18,11 +18,14 @@ import CDD.game.view.App;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class BoardController implements Initializable{
@@ -51,6 +54,15 @@ public class BoardController implements Initializable{
 	private Circle rightAlarm;
 	@FXML
 	private Text name;
+	@FXML
+	private HBox topCardGroup;
+	@FXML
+	private HBox leftCardGroup;
+	@FXML
+	private HBox rightCardGroup;
+	@FXML
+	private HBox bottomCardGroup;
+	
 	
 	private Board board;
 	
@@ -114,35 +126,54 @@ public class BoardController implements Initializable{
 		showCards.setOnMouseClicked(e->{
 		    CardGroup group=CardGroupFactory.create(selectedCard,board.getBottomPlayer());
 			if(group==null)
+			{
 				mes.setText("不符合规则");
+			}
 			else
 			{
-				System.out.println(group.getCards().size());
-				if(Filter.DiamondThreejudge(board.getBottomPlayer().getHandCards()))
-				{
-					if(!Filter.DiamondThreejudge(group.getCards()))
-					{
-						mes.setText("不包含方块三");
-						return;
-					}
-				}
-				if(board.getCurrentGroups()!=null&&board.getCurrentGroups().getOwner()!=board.getBottomPlayer())
-				{
-				  if(!group.CompareTo(board.getCurrentGroups()))
-				 {
-					mes.setText("不符合规则");
-					return;
-				 }
-				}
-				UserPlayer player=(UserPlayer) board.getBottomPlayer();
-				player.showCards(board, group);
-				Game.getInstance().showcardMusic();
-				selectedCard.clear();				
-				updateView();
+				      if(judgeShowCard(group))
+				      {
+					    UserPlayer player=(UserPlayer) board.getBottomPlayer();
+						showCardGroup(group, bottomCardGroup);
+						player.showCards(board, group);
+						Game.getInstance().showcardMusic();
+						selectedCard.clear();				
+						updateView();
+				      }
+				  
+				
+				
 			}
 		});
 		
 	}
+	
+	public boolean judgeShowCard(CardGroup group)
+	{
+		if(Filter.DiamondThreejudge(board.getBottomPlayer().getHandCards()))
+		{
+			if(!Filter.DiamondThreejudge(group.getCards()))
+			{
+				mes.setText("不包含方块三");
+				return false;
+			}
+		}
+		if(board.getCurrentGroups()!=null)
+		{
+			if(board.getCurrentGroups().getOwner()!=board.getBottomPlayer())
+			{
+				if(!group.CompareTo(board.getCurrentGroups()))
+				{
+					updateView();
+					mes.setText("不符合规则");
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	
 //	不出按钮事件监听
 	public void PassEvent() {
 		Pass.setOnMouseEntered(e->{
@@ -157,6 +188,7 @@ public class BoardController implements Initializable{
 		Pass.setOnMouseClicked(e->{
 			UserPlayer player=(UserPlayer) board.getBottomPlayer();
 			player.showCards(board, null);
+			showCardGroup(null, bottomCardGroup);
 			selectedCard.clear();
 			updateView();
 		});
@@ -200,16 +232,7 @@ public class BoardController implements Initializable{
 		TopCardCount.setText(String.valueOf(board.getTopPlayer().getHandCards().size()));
 		LeftCardCount.setText(String.valueOf(board.getLeftPlayer().getHandCards().size()));
 		RightCardCount.setText(String.valueOf(board.getRightPlayer().getHandCards().size()));
-		CardGroup group=board.getCurrentGroups();
-		if(group!=null)
-		{
-			this.cardGroup.getChildren().clear();
-			for(Card card:group.getCards())
-			{
-				
-				cardGroup.getChildren().add(card.getView());
-			}
-		}
+		
 		closeAlarm();
 		showAlarm();
 	}
@@ -225,6 +248,7 @@ public class BoardController implements Initializable{
 		    	cardGroup.getChildren().clear();
 				try {
 					cardGroup.getChildren().add(App.loadFXML("GameOver"));
+					cardGroup.toFront();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -232,6 +256,72 @@ public class BoardController implements Initializable{
 		    }
 		});
 	}
+	
+	public void exitGame()
+	{
+		board.stopRobot();
+		try {
+			App.setRoot("StartView");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void showCardGroup(CardGroup group,HBox side)
+	{
+		side.getChildren().clear();
+		if(group==null)
+		{
+			Text text=new Text("不出");
+			text.setFill(Color.RED);  
+			text.setFont(Font.font(30));
+			side.getChildren().add(text);
+		}
+		else
+		{
+//			side.setAlignment(Pos.CENTER);
+//			side.setSpacing(-100);
+//			for(Card card:group.getCards())
+//			{
+//				side.getChildren().add(card.getView());
+//			}
+			side.getChildren().add(group.getView());
+		}
+	}
+
+	public HBox getTopCardGroup() {
+		return topCardGroup;
+	}
+
+	public void setTopCardGroup(HBox topCardGroup) {
+		this.topCardGroup = topCardGroup;
+	}
+
+	public HBox getLeftCardGroup() {
+		return leftCardGroup;
+	}
+
+	public void setLeftCardGroup(HBox leftCardGroup) {
+		this.leftCardGroup = leftCardGroup;
+	}
+
+	public HBox getRightCardGroup() {
+		return rightCardGroup;
+	}
+
+	public void setRightCardGroup(HBox rightCardGroup) {
+		this.rightCardGroup = rightCardGroup;
+	}
+
+	public HBox getBottomCardGroup() {
+		return bottomCardGroup;
+	}
+
+	public void setBottomCardGroup(HBox bottomCardGroup) {
+		this.bottomCardGroup = bottomCardGroup;
+	}
+	
 	
 
 }

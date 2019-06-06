@@ -88,7 +88,10 @@ public class CardGroupFactory {
 				
 		}
 		}
-		
+		if(group!=null)
+		{
+		group.generateView();
+		}
 		return group;
 	}
 	
@@ -124,7 +127,8 @@ public class CardGroupFactory {
 	public static boolean isThreeBeltTwo(List<Card> cards)
 	{
 		CardFactory.sortByPoint(cards);
-		List<Card> temp=cards;
+		List<Card> temp=new ArrayList<>();
+		temp.addAll(cards);
 		List<Card> TopThree=new ArrayList<>();
 		for(int i=0;i<3;i++)
 		{

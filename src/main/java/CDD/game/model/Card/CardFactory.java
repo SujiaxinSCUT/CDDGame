@@ -73,6 +73,7 @@ public class CardFactory {
 		{
 			cards.addAll(TotalCardGroup);
 			TotalCardGroup.removeAll(cards);
+			cards=sortByPoint(cards);
 			return cards;
 		}
 		for(int i=0;i<13;i++)

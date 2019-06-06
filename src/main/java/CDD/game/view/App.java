@@ -24,15 +24,16 @@ public class App extends Application {
 
     private static Scene scene;
 
-    
+    public static Stage stage;
     
     @Override
     public void start(Stage stage) throws IOException {
 
+    	this.stage=stage;
         Game.getInstance().playMusic();
         scene=new Scene(loadFXML("StartView"));
-        stage.setScene(scene);
-        stage.show();
+        this.stage.setScene(scene);
+        this.stage.show();
     }
 
     public static void setRoot(String fxml) throws IOException {

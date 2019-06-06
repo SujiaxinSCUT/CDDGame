@@ -6,6 +6,7 @@ import java.util.Set;
 import CDD.game.model.Card.Card;
 import CDD.game.model.Card.CardFactory;
 import CDD.game.model.Player.Player;
+import CDD.game.view.CardGroupView;
 
 public class CardGroup {
 
@@ -14,6 +15,8 @@ public class CardGroup {
 	private List<Card> cards;
 
 	private Player owner;
+	
+	private CardGroupView view;
 	
 	public CardGroup() {
 		super();
@@ -26,8 +29,19 @@ public class CardGroup {
 		this.cards = cards;
 	}
 
+	public void generateView()
+	{
+		view=new CardGroupView(this);
+	}
 	
-	
+	public CardGroupView getView() {
+		return view;
+	}
+
+	public void setView(CardGroupView view) {
+		this.view = view;
+	}
+
 	public Player getOwner() {
 		return owner;
 	}

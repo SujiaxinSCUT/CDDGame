@@ -79,7 +79,35 @@ public class Board {
 		thread3.start();
 	}
 
-
+    public int getScore()
+    {
+    	if(currentPlayer!=bottomPlayer)
+    	{
+    		int score=0;
+    		for(Card card:bottomPlayer.getHandCards())
+    		{
+    			score+=2;
+    		}
+    		return score;
+    	}
+    	else
+    	{
+    		int score=0;
+    		for(Card card:topPlayer.getHandCards())
+    		{
+    			score+=5;
+    		}
+    		for(Card card:leftPlayer.getHandCards())
+    		{
+    			score+=5;
+    		}
+    		for(Card card:rightPlayer.getHandCards())
+    		{
+    			score+=5;
+    		}
+    		return score;
+    	}
+    }
 	
 	
 	public boolean isStop() {
@@ -159,9 +187,7 @@ public class Board {
 
 	public void setFlag(boolean flag) {
 		this.flag = flag;
-		topPlayer.running=false;
-		leftPlayer.running=false;
-		rightPlayer.running=false;
+		stopRobot();
 		try {
 			controller.gameOver();
 		} catch (Exception e) {
@@ -170,6 +196,16 @@ public class Board {
 		}
 	}
 	
+	public void stopRobot()
+	{
+		topPlayer.running=false;
+		leftPlayer.running=false;
+		rightPlayer.running=false;
+	}
 	
+	public BoardController getController()
+	{
+		return controller;
+	}
 	
 }

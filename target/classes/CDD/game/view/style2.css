@@ -42,4 +42,47 @@
 	-fx-background-size:stretch ;
 }
 
+.rankBg{
+	-fx-background-image:url(file:///D:/Myjava/game/images/rank/bg.png);
+	-fx-background-repeat:repeat ;
+	-fx-background-size:stretch ;
+}
 
+.table-view {
+    -fx-base: #46A3FF;
+    -fx-control-inner-background: #46A3FF;
+    -fx-background-color: #46A3FF;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-border-color: 
+        transparent
+        transparent
+        derive(-fx-base, 80%) 
+        transparent;
+    -fx-border-insets: 0 10 1 0;
+}
+
+.closeButton{
+	-fx-background-image:url(file:///D:/Myjava/game/images/Main/controls/close.png);
+	-fx-background-repeat:repeat ;
+	-fx-background-size:stretch ;
+}
+
+.exitButton{
+	-fx-background-image:url(file:///D:/Myjava/game/images/Main/controls/exitButton.png);
+	-fx-background-repeat:repeat ;
+	-fx-background-size:stretch ;
+}
+
+.exitButton:hover{
+	-fx-background-image:url(file:///D:/Myjava/game/images/Main/controls/exitButtonHover.png);
+	-fx-background-repeat:repeat ;
+	-fx-background-size:stretch ;
+}
