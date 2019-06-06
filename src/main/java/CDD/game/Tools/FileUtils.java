@@ -26,7 +26,7 @@ public class FileUtils {
 	private static File file;
 	static {
 		try {
-			file=new File("record/players.txt");
+			file=new File("players.txt");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

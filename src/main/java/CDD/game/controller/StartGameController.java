@@ -3,11 +3,14 @@ package CDD.game.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import CDD.game.Game;
 import CDD.game.Tools.FileUtils;
+import CDD.game.model.Card.Card;
 import CDD.game.model.Player.User;
 import CDD.game.model.Player.UserPlayer;
 import CDD.game.view.App;
@@ -73,12 +76,12 @@ public class StartGameController implements Initializable{
 	public void RankEvent()
 	{
 		rank.setOnMouseEntered(e->{
-			rank.setPrefHeight(105);
-			rank.setPrefWidth(205);
+			rank.setPrefHeight(75);
+			rank.setPrefWidth(155);
 		});
 		rank.setOnMouseExited(e->{
-			rank.setPrefHeight(100);
-			rank.setPrefWidth(200);
+			rank.setPrefHeight(70);
+			rank.setPrefWidth(150);
 		});
 		rank.setOnMouseClicked(e->{
 			settingPage.setVisible(false);
@@ -87,6 +90,20 @@ public class StartGameController implements Initializable{
 			rankPage.setDisable(false);
 			rankPage.toFront();
 			List<User>  lists=FileUtils.readUser();
+			Collections.sort(lists, new Comparator<User>() {
+
+				@Override
+				public int compare(User u1,User u2) {
+					// TODO Auto-generated method stub
+					if(u1.getScore()<u2.getScore()) {
+						return 1;
+					}
+					else return -1;
+				}
+
+				
+				
+			});
 			UserData.clear();
 			UserData.addAll(lists);
 		});
@@ -95,12 +112,12 @@ public class StartGameController implements Initializable{
 	public void StartButtonEvent()
 	{
 		StartButton.setOnMouseEntered(e->{
-			StartButton.setPrefHeight(105);
-			StartButton.setPrefWidth(205);
+			StartButton.setPrefHeight(75);
+			StartButton.setPrefWidth(155);
 		});
 		StartButton.setOnMouseExited(e->{
-			StartButton.setPrefHeight(100);
-			StartButton.setPrefWidth(200);
+			StartButton.setPrefHeight(70);
+			StartButton.setPrefWidth(150);
 		});
 		StartButton.setOnMouseClicked(e->{
 			try {
@@ -140,12 +157,12 @@ public class StartGameController implements Initializable{
 	public void SettingEvent()
 	{
 		settings.setOnMouseEntered(e->{
-			settings.setPrefHeight(105);
-			settings.setPrefWidth(205);
+			settings.setPrefHeight(75);
+			settings.setPrefWidth(155);
 		});
 		settings.setOnMouseExited(e->{
-			settings.setPrefHeight(100);
-			settings.setPrefWidth(200);
+			settings.setPrefHeight(70);
+			settings.setPrefWidth(150);
 		});
 		settings.setOnMouseClicked(e->{
 			rankPage.setVisible(false);

@@ -81,8 +81,8 @@ public class BoardController implements Initializable{
 		showCardsEvent();
 		PassEvent();
 
-		playerCards.setSpacing(-100);
-	    cardGroup.setSpacing(-100);
+		playerCards.setSpacing(-65);
+	    
 	    updateView();
         board.RobotRun();
 	}
@@ -114,15 +114,7 @@ public class BoardController implements Initializable{
 	
 //	出牌按钮事件监听
 	public void showCardsEvent() {
-		showCards.setOnMouseEntered(e->{
-			showCards.setPrefHeight(65);
-			showCards.setPrefWidth(130);
-		}
-		);
-		showCards.setOnMouseExited(e->{
-			showCards.setPrefHeight(60);
-			showCards.setPrefWidth(120);
-		});
+		
 		showCards.setOnMouseClicked(e->{
 		    CardGroup group=CardGroupFactory.create(selectedCard,board.getBottomPlayer());
 			if(group==null)
@@ -176,15 +168,7 @@ public class BoardController implements Initializable{
 	
 //	不出按钮事件监听
 	public void PassEvent() {
-		Pass.setOnMouseEntered(e->{
-			Pass.setPrefHeight(55);
-			Pass.setPrefWidth(120);
-		}
-		);
-		Pass.setOnMouseExited(e->{
-			Pass.setPrefHeight(50);
-			Pass.setPrefWidth(115);
-		});
+		
 		Pass.setOnMouseClicked(e->{
 			UserPlayer player=(UserPlayer) board.getBottomPlayer();
 			player.showCards(board, null);

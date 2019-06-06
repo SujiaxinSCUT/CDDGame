@@ -43,7 +43,7 @@
 }
 
 .rankBg{
-	-fx-background-image:url(file:///D:/Myjava/game/images/rank/bg.png);
+	-fx-background-image:url(file:images/rank/bg.png);
 	-fx-background-repeat:repeat ;
 	-fx-background-size:stretch ;
 }
@@ -70,19 +70,19 @@
 }
 
 .closeButton{
-	-fx-background-image:url(file:///D:/Myjava/game/images/Main/controls/close.png);
+	-fx-background-image:url(file:images/Main/controls/close.png);
 	-fx-background-repeat:repeat ;
 	-fx-background-size:stretch ;
 }
 
 .exitButton{
-	-fx-background-image:url(file:///D:/Myjava/game/images/Main/controls/exitButton.png);
+	-fx-background-image:url(file:images/Main/controls/exitButton.png);
 	-fx-background-repeat:repeat ;
 	-fx-background-size:stretch ;
 }
 
 .exitButton:hover{
-	-fx-background-image:url(file:///D:/Myjava/game/images/Main/controls/exitButtonHover.png);
+	-fx-background-image:url(file:images/Main/controls/exitButtonHover.png);
 	-fx-background-repeat:repeat ;
 	-fx-background-size:stretch ;
 }

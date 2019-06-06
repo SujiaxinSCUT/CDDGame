@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1400.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CDD.game.controller.StartGameController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CDD.game.controller.StartGameController">
    <children>
       <StackPane fx:id="rankPage" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" styleClass="rankBg" stylesheets="@style2.css" visible="false">
          <children>
@@ -42,11 +42,11 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </StackPane>
-      <VBox alignment="CENTER" prefWidth="270.0" spacing="20.0">
+      <VBox alignment="CENTER" prefWidth="270.0" spacing="10.0">
          <children>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER_RIGHT">
                <children>
-                  <Label fx:id="StartButton" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="startButton">
+                  <Label fx:id="StartButton" alignment="CENTER" prefHeight="70.0" prefWidth="150.0" styleClass="startButton">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -56,9 +56,9 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER_RIGHT">
                <children>
-                  <Button fx:id="settings" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" styleClass="setting" text="游戏设置">
+                  <Button fx:id="settings" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" styleClass="setting" text="游戏设置">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -66,19 +66,19 @@
                         <Insets right="50.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="System Bold Italic" size="36.0" />
+                        <Font name="System Bold Italic" size="24.0" />
                      </font>
                   </Button>
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT">
                <children>
-                  <Button fx:id="rank" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" styleClass="setting" text="排行">
+                  <Button fx:id="rank" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" styleClass="setting" text="排行">
                      <HBox.margin>
                         <Insets right="50.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="System Bold" size="36.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />

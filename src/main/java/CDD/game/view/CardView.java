@@ -28,20 +28,20 @@ public class CardView extends StackPane {
     {
         this.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
     	this.setAlignment(Pos.TOP_LEFT);
-    	this.setPrefHeight(180);
-    	this.setPrefWidth(140);
+    	this.setPrefHeight(140);
+    	this.setPrefWidth(100);
     	this.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
     	this.getStyleClass().add("Card");
     	
     	color=new Label();
     	point =new Text();
     	
-    	StackPane.setMargin(color, new Insets(50,0,0,10));
+    	StackPane.setMargin(color, new Insets(30,0,0,10));
     	StackPane.setMargin(point, new Insets(0,0,0,10));
     	
-    	point.setFont(Font.font("System", FontWeight.BOLD	, 34));
-    	color.setPrefWidth(25);
-    	color.setPrefHeight(25);
+    	point.setFont(Font.font("System", FontWeight.BOLD	, 24));
+    	color.setPrefWidth(20);
+    	color.setPrefHeight(20);
         
     	switch(card.getColor())
     	{

@@ -17,7 +17,7 @@ public class CardGroupView extends HBox {
 	{
 		
 		this.setAlignment(Pos.CENTER);
-		this.setSpacing(-100);
+		this.setSpacing(-65);
 		for(Card card:group.getCards())
 		{
 			this.getChildren().add(card.getView());
